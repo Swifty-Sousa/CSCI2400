@@ -174,7 +174,14 @@ NOTES:
  *   Max ops: 8
  *   Rating: 1
  */
-int bitOr(int x, int y) {
+
+
+// my work starts here
+//Note I have my first curly brace under the function
+
+
+int bitOr(int x, int y) 
+{
   return 2;
 }
 /* 
@@ -183,7 +190,8 @@ int bitOr(int x, int y) {
  *   Max ops: 8
  *   Rating: 1
  */
-int evenBits(void) {
+int evenBits(void) 
+{
   return 2;
 }
 /* 
@@ -192,7 +200,8 @@ int evenBits(void) {
  *   Max ops: 2
  *   Rating: 1
  */
-int minusOne(void) {
+int minusOne(void) 
+{
   return 2;
 }
 /* 
@@ -202,7 +211,8 @@ int minusOne(void) {
  *   Max ops: 12
  *   Rating: 2
  */
-int allEvenBits(int x) {
+int allEvenBits(int x) 
+{
   return 2;
 }
 /* 
@@ -212,7 +222,8 @@ int allEvenBits(int x) {
  *   Max ops: 12
  *   Rating: 2
  */
-int anyOddBit(int x) {
+int anyOddBit(int x) 
+{
     return 2;
 }
 /* 
@@ -224,7 +235,8 @@ int anyOddBit(int x) {
  *  Max ops: 25
  *  Rating: 2
  */
-int byteSwap(int x, int n, int m) {
+int byteSwap(int x, int n, int m) 
+{
     return 2;
 }
 /* 
@@ -235,7 +247,8 @@ int byteSwap(int x, int n, int m) {
  *   Max ops: 20
  *   Rating: 3
  */
-int addOK(int x, int y) {
+int addOK(int x, int y) 
+{
   return 2;
 }
 /* 
@@ -245,7 +258,8 @@ int addOK(int x, int y) {
  *   Max ops: 16
  *   Rating: 3
  */
-int conditional(int x, int y, int z) {
+int conditional(int x, int y, int z) 
+{
   return 2;
 }
 /* 
@@ -257,7 +271,8 @@ int conditional(int x, int y, int z) {
  *   Max ops: 15
  *   Rating: 3
  */
-int isAsciiDigit(int x) {
+int isAsciiDigit(int x) 
+{
   return 2;
 }
 /* 
@@ -269,7 +284,8 @@ int isAsciiDigit(int x) {
  *   Max ops: 10
  *   Rating: 3
  */
-int replaceByte(int x, int n, int c) {
+int replaceByte(int x, int n, int c) 
+{
   return 2;
 }
 /* reverseBits - reverse the bits in a 32-bit integer,
@@ -284,7 +300,8 @@ int replaceByte(int x, int n, int c) {
  *  Max ops: 90
  *  Rating: 4
  */
-int reverseBits(int x) {
+int reverseBits(int x) 
+{
   return 0;
 }
 /*
@@ -297,7 +314,8 @@ int reverseBits(int x) {
  *   Max ops: 30
  *   Rating: 4
  */
-int satAdd(int x, int y) {
+int satAdd(int x, int y) 
+{
   return 2;
 }
 /*
