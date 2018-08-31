@@ -1,0 +1,50 @@
+Early Computers:
+
+
+Repping info as bits:
+    - Every bit is a 0 or a 1
+    - we encode and interpret sets of bits in various ways
+        -Computer determine what to do
+    why bits?
+        - electronic inplementation:
+            - The 0 and 1 represent a low and high voltage
+    octal digits:
+        - base 8 used digits 01234567
+        - octal starts with a preceeding 0
+        - break binary into groups of 3;
+        - look at octal chart
+    Hexadecimal:
+        - base 16 1-9 && A-F
+        - byte is 8 bits
+        - 2 hex digits are one byte
+        - starts wiht 0x always
+        - 0xdeadbeef is a hex number
+
+Bit level manipulations:
+    - True =1 and Flase=0
+    - boolean algebra has the same rules as interger numbers
+    - a(b+c) = ab + ac
+    - a + bc= (a+b)(a+c)
+
+Genreal Boolean Algebras:
+    - can be used on 8bit vectors 
+    - look at lecture notes for more onthis one.
+    - operations are & | ^ ~
+    - && and || and ! are short circut operators
+
+for data lab:
+    - complement(bang) operator
+    
+masks and bit shifting:
+    - 1011_1110 <<3 (shift by 3) becomes 1111_0000 ( convention to add in 0 for the shift)
+    - 1011_1110>> 3 becomes 0001_0111
+    - masking:
+        - 0xb01dface, extract the last byte 
+        - 0xb01dface & 0xff
+    
+byte oriented Memory rog
+    - computers have word size, ie the maximumes bite size numbers that can be multiplied 
+    conventions;
+    - Big Endian, least significant number has highest adress priority
+    - little Endian, opposite
+    - 

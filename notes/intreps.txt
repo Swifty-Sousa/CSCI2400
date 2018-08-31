@@ -1,0 +1,9 @@
+Integer Representation:
+    - assume a 4 bit world
+    - 0001 is 1
+    - 1001 would be -1
+    - 10000 is negative 0 
+    - and thats shit so there is this thing called two's complement
+
+Signed and Unsiged numbers:
+    - Look at lecture notes for diagram of this

@@ -1,7 +1,7 @@
 /* 
  * CS:APP Data Lab 
  * 
- * <Please put your name and userid here>
+ * <Christian F. Sousa 106858563>
  * 
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -167,6 +167,12 @@ NOTES:
    - 285 hentaigana
    - 3 additional Zanabazar Square characters */
 /* We do not support C11 <threads.h>.  */
+
+// my work starts here
+//Syntax Note: I have my first curly brace under the function
+
+
+
 /* 
  * bitOr - x|y using only ~ and & 
  *   Example: bitOr(6, 5) = 7
@@ -174,12 +180,6 @@ NOTES:
  *   Max ops: 8
  *   Rating: 1
  */
-
-
-// my work starts here
-//Note I have my first curly brace under the function
-
-
 int bitOr(int x, int y) 
 {
   return 2;
