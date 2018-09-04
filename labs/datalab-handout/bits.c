@@ -182,7 +182,7 @@ NOTES:
  */
 int bitOr(int x, int y) 
 {
-  return 2;
+  return ~(~x|~y);
 }
 /* 
  * evenBits - return word with all even-numbered bits set to 1
@@ -202,7 +202,12 @@ int evenBits(void)
  */
 int minusOne(void) 
 {
-  return 2;
+  /* idea for later
+    - take like 3 or some shit, aka 11 as an unsiged and then make it signed
+    this will make it 11 = -2 +1 =-1
+  */
+  x=0;
+  return `x ;
 }
 /* 
  * allEvenBits - return 1 if all even-numbered bits in word set to 1
