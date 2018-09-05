@@ -199,7 +199,13 @@ int bitOr(int x, int y)
  */
 int evenBits(void) 
 {
-  return 2;
+  int m=85; // is 0x55 -> 0101 0101 
+  m+= (85<<8); // is 0x5500 + 0x055 = 0x5555
+  m+= (85<<16); // is 0x555500 = 0x000055 = 0x555555
+  m+= (85<<24); // is 0x55555500 + 0x00000055= 0x55555555
+  // 0x555555555-> 0101 0101 0101 0101 0101 0101 0101 0101 which has all even bits set to 1
+
+  return m;
 }
 /* 
  * minusOne - return a value of -1 
