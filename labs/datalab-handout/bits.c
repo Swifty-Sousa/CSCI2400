@@ -182,7 +182,14 @@ NOTES:
  */
 int bitOr(int x, int y) 
 {
-  return ~(~x|~y);
+  /*
+  this abuses the ~ operator
+  this one is by logic
+  ~x&~y means not x and not y
+  and taking ~ of what that returns is garunteed to 
+  not be either x or y
+  */
+  return ~(~x & ~y);
 }
 /* 
  * evenBits - return word with all even-numbered bits set to 1
@@ -202,12 +209,12 @@ int evenBits(void)
  */
 int minusOne(void) 
 {
-  /* idea for later
-    - take like 3 or some shit, aka 11 as an unsiged and then make it signed
-    this will make it 11 = -2 +1 =-1
+  /*
+  a defualt signed 0 is 32 bits of 0
+  and we knwo that -1 is 32 bits of 1
+  therefore the complement of 0 will be 32 bits of 1 = -1
   */
-  x=0;
-  return `x ;
+  return ~0;
 }
 /* 
  * allEvenBits - return 1 if all even-numbered bits in word set to 1
