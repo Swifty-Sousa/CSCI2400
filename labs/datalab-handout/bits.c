@@ -200,9 +200,9 @@ int bitOr(int x, int y)
 int evenBits(void) 
 {
   int m=85; // is 0x55 -> 0101 0101 
-  m+= (85<<8); // is 0x5500 + 0x055 = 0x5555
-  m+= (85<<16); // is 0x555500 = 0x000055 = 0x555555
-  m+= (85<<24); // is 0x55555500 + 0x00000055= 0x55555555
+  m+= (85<<8); // is 0x55 + 0x5500 = 0x5555
+  m+= (85<<16); // is 0x005555 = 0x550000 = 0x555555
+  m+= (85<<24); // is 0x00555555 + 0x55000000= 0x55555555
   // 0x555555555-> 0101 0101 0101 0101 0101 0101 0101 0101 which has all even bits set to 1
 
   return m;
@@ -229,9 +229,16 @@ int minusOne(void)
  *   Max ops: 12
  *   Rating: 2
  */
+
 int allEvenBits(int x) 
 {
-  return 2;
+  int h =85;
+  h+= (85<<8);
+  h+= (85<<16);
+  h+= (85<<24);
+  // the above sequence creates a word where all the even bits are 1 explained in the function evenBits;
+
+  return  !((h&x) ^ h);
 }
 /* 
  * anyOddBit - return 1 if any odd-numbered bit in word set to 1
@@ -240,6 +247,13 @@ int allEvenBits(int x)
  *   Max ops: 12
  *   Rating: 2
  */
+
+
+
+
+
+
+
 int anyOddBit(int x) 
 {
     return 2;
