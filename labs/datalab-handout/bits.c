@@ -238,7 +238,7 @@ int allEvenBits(int x)
   h+= (85<<24);
   // the above sequence creates a word where all the even bits are 1 explained in the function evenBits;
 
-  return  !((h&x) ^ h);
+  return !((h&x) ^ h);
 }
 /* 
  * anyOddBit - return 1 if any odd-numbered bit in word set to 1
@@ -256,7 +256,11 @@ int allEvenBits(int x)
 
 int anyOddBit(int x) 
 {
-    return 2;
+    int m= 170;//0xaa -> 1010 1010
+    m+= (170<<8);//
+    m+= (170<<16);//
+    m+= (170<<24);//
+    return !((m&x)^m);
 }
 /* 
  * byteSwap - swaps the nth byte and the mth byte
