@@ -168,8 +168,8 @@ NOTES:
    - 3 additional Zanabazar Square characters */
 /* We do not support C11 <threads.h>.  */
 
-// my work starts here
-//Syntax Note: I have my first curly brace under the function
+/*my work starts here
+Syntax Note: I have my first curly brace under the function*/
 
 
 
@@ -199,11 +199,15 @@ int bitOr(int x, int y)
  */
 int evenBits(void) 
 {
-  int m=85; // is 0x55 -> 0101 0101 
-  m+= (85<<8); // is 0x55 + 0x5500 = 0x5555
-  m+= (85<<16); // is 0x005555 = 0x550000 = 0x555555
-  m+= (85<<24); // is 0x00555555 + 0x55000000= 0x55555555
-  // 0x555555555-> 0101 0101 0101 0101 0101 0101 0101 0101 which has all even bits set to 1
+  int m=85; 
+  /* is 0x55 -> 0101 0101 */
+  m+= (85<<8); 
+  /* is 0x55 + 0x5500 = 0x5555*/
+  m+= (85<<16); 
+  /* is 0x005555 = 0x550000 = 0x555555*/
+  m+= (85<<24); 
+  /* is 0x00555555 + 0x55000000= 0x55555555
+   0x555555555-> 0101 0101 0101 0101 0101 0101 0101 0101 which has all even bits set to 1*/
 
   return m;
 }
@@ -236,7 +240,12 @@ int allEvenBits(int x)
   h+= (85<<8);
   h+= (85<<16);
   h+= (85<<24);
-  // the above sequence creates a word where all the even bits are 1 explained in the function evenBits;
+  /*the above sequence creates a word where all the even bits are 1 explained in the function evenBits
+  the fucion should only return true if the number put in is 0x55555555  
+  and therefor x=h and h&h= h -> then h^h=0 and !0 = true (1)
+ */
+
+
 
   return !((h&x) ^ h);
 }
@@ -249,18 +258,17 @@ int allEvenBits(int x)
  */
 
 
-
-
-
-
-
 int anyOddBit(int x) 
 {
-    int m= 170;//0xaa -> 1010 1010
-    m+= (170<<8);//
-    m+= (170<<16);//
-    m+= (170<<24);//
-    return !((m&x)^m);
+    int m= 170;
+    m+= (170<<8);
+    m+= (170<<16);
+    m+= (170<<24);
+    return !!(m&x);
+    /* I first use the same bitmask concept to create a number that in 1010 ..
+    m&x will return will give a binary number !=0 if any of the odd numberd bits was set to 0
+    then the first ! will make it 0 and the second will turn it back to 1
+    if none of the odd bits are one m&x will return 0 and !!(0)=0;*/
 }
 /* 
  * byteSwap - swaps the nth byte and the mth byte
@@ -273,7 +281,21 @@ int anyOddBit(int x)
  */
 int byteSwap(int x, int n, int m) 
 {
-    return 2;
+  /* 15 =0x000000ff*/
+  int mask1 = 15<< (n<<3);
+  int mask2= 15 <<(m<<3);
+  int mask= (mask1 & mask2 ^ )0xFFFFFFFF;
+  /* this makes a inverse of the two masks that will be used to clear those data slots*/
+  /*mask1 is 15<< (x<<3) you want to bit shift by x*3 but you cant use multiplication*/
+  /*mask2 is 15<< (y<<3) for the same reasons as above */
+  int byten = x & mask1;
+  int bytem= x & mask2;
+  /* the above extrats out the bytes that we need to swap;*/
+  bytem>>(n>>3);
+  byten>>(m>>3);
+  x |= bytem;
+  x |= byten;
+    return x;
 }
 /* 
  * addOK - Determine if can compute x+y without overflow
@@ -285,6 +307,7 @@ int byteSwap(int x, int n, int m)
  */
 int addOK(int x, int y) 
 {
+  /* remmber that  if (+) & (+) = - then overflow and vice versa*/
   return 2;
 }
 /* 
