@@ -281,21 +281,17 @@ int anyOddBit(int x)
  */
 int byteSwap(int x, int n, int m) 
 {
-  /* 15 =0x000000ff*/
-  int mask1 = 15<< (n<<3);
-  int mask2= 15 <<(m<<3);
-  int mask= (mask1 & mask2 ^ )0xFFFFFFFF;
+  int mask1 = 0xFF<< (n<<3);
+  int mask2= 0xFF<<(m<<3);
+  int anti_mask= (mask1 | mask2) ^ 0xFFFFFFFF;
   /* this makes a inverse of the two masks that will be used to clear those data slots*/
   /*mask1 is 15<< (x<<3) you want to bit shift by x*3 but you cant use multiplication*/
-  /*mask2 is 15<< (y<<3) for the same reasons as above */
-  int byten = x & mask1;
-  int bytem= x & mask2;
-  /* the above extrats out the bytes that we need to swap;*/
-  bytem>>(n>>3);
-  byten>>(m>>3);
-  x |= bytem;
-  x |= byten;
-    return x;
+  int bn = x & mask1;
+  int bm = x & mask2;
+  x= x & anti_mask;
+  x|= (bn<< (n<<3));
+  x|= (~(bm>> (m<<3))+1);
+  return x;
 }
 /* 
  * addOK - Determine if can compute x+y without overflow
@@ -308,7 +304,7 @@ int byteSwap(int x, int n, int m)
 int addOK(int x, int y) 
 {
   /* remmber that  if (+) & (+) = - then overflow and vice versa*/
-  return 2;
+  return 2 ;
 }
 /* 
  * conditional - same as x ? y : z 
@@ -345,8 +341,14 @@ int isAsciiDigit(int x)
  */
 int replaceByte(int x, int n, int c) 
 {
-  return 2;
+  int mask = 0xFF << (n<<3); // shift mask that would copy the data into position
+  int anti_mask = ~mask;// creates the compliment of that mask to clear data in x
+  x= x & anti_mask; // command clears spot with the anti mask.
+  x |= c<< (n<<3); // this moves new data into position and then inserts it into x
+
+  return x;
 }
+//this is a comment
 /* reverseBits - reverse the bits in a 32-bit integer,
               i.e. b0 swaps with b31, b1 with b30, etc
  *  Examples: reverseBits(0x11111111) = 0x88888888
