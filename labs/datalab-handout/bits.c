@@ -286,11 +286,11 @@
    /*mask1 is 15<< (x<<3) you want to bit shift by x*3 but you cant use multiplication*/
    bn = x & mask1;
    bm = x & mask2;
-   bn= (bn>>(n<<3)& 0xFF);
-   bm= (bm>>(m<<3)& 0xFF);
+   bn= (bn>>(n<<3)& 0xFF);// using mask to shift them all the way to the left
+   bm= (bm>>(m<<3)& 0xFF);// same as above
    x= x & anti_mask;
-   x|= (bm<< (n<<3));
-   x|= (bn << (m<<3));
+   x|= (bm<< (n<<3));// same as below;
+   x|= (bn << (m<<3));// shifting the bytes to their new posititon
    return x;
  }
  /* 
@@ -343,6 +343,7 @@
  int isAsciiDigit(int x) 
  {
    return !(((x + (~0x30 +1))>>31) | (0x39 + (~x + 1))>>31 );
+   /**/
    
  }
  /* 
