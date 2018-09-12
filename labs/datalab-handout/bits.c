@@ -236,7 +236,7 @@
  
  int allEvenBits(int x) 
  {
-   int h =85;
+   int h =85;// 85 = 0x55 =0101 0101
    h+= (85<<8);
    h+= (85<<16);
    h+= (85<<24);
@@ -307,7 +307,7 @@
      int signx, signy, summsign;
      signx= (x>>31);// extracting the signed bit 
      signy= (y>>31);// extracting the signed bit
-     summsign= (x + y)>> 31;
+     summsign= (x + y)>> 31;// extracting the signed bit of the summation
      return !(((summsign^ signy) & (signx ^ summsign))&1);
      // this checks to see if the sign of the summation is the same as the sign of x and y, if it is not then positive overflow has occured
      // how ever this method will returen -1 if there is overflow so you do &1 to make it a positive 1 and the use ! operator to return false
@@ -343,7 +343,12 @@
  int isAsciiDigit(int x) 
  {
    return !(((x + (~0x30 +1))>>31) | (0x39 + (~x + 1))>>31 );
-   /**/
+   /*the first part before the or sign is to check if x>0x30 if the value of the summation is + then it is
+   then it is shifted 31 to the right to extract the signed bit.
+   
+   the second part takes the negative of x and adds it to 0x39, if it is positive then x<0x39
+   we then or them together, will be 0 if the number is withnin range so we have to take ! that value
+   */
    
  }
  /* 
@@ -410,11 +415,7 @@
  }
  
  
- 
- 
- 
- 
- 
+
  
  
  /*
