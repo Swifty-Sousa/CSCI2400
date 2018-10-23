@@ -90,7 +90,7 @@ readFilter(string filename)
 
 double
 applyFilter(struct Filter *filter, cs1300bmp *input, cs1300bmp *output)
-{
+
 
   long long cycStart, cycStop;
 
@@ -98,10 +98,11 @@ applyFilter(struct Filter *filter, cs1300bmp *input, cs1300bmp *output)
 
   output -> width = input -> width;
   output -> height = input -> height;
+    int iw= input -> width;
+    int ih= input-> height;
 
-
-  for(int col = 1; col < (input -> width) - 1; col = col + 1) {
-    for(int row = 1; row < (input -> height) - 1 ; row = row + 1) {
+  for(int col = 1; col < iw - 1; col = col + 1) {
+    for(int row = 1; row < ih - 1 ; row = row + 1) {
       for(int plane = 0; plane < 3; plane++) {
 
   int t = 0;
