@@ -78,7 +78,7 @@ if ($label =~ "") {
 if ($cpe > 3000) {
     $score = 0;
 } else {
-    $score = $cpe * -0.03215 + 99.96 + 3;
+    $score = log($cpe) * -14.2 + 160;
     if ($score > 110 ) {
 	$score = 110;
     }

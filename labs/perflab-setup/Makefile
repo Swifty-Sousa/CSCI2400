@@ -4,14 +4,16 @@
 CXX	=g++
 ##
 ## Use our standard compiler flags for the course...
+## You can try changing these flags to improve performance.
 ##
-CXXFLAGS= -m32 -g -O0 -fno-omit-frame-pointer
+CXXFLAGS= -g -O3 -fno-omit-frame-pointer -Wall
 
 goals: judge
-	echo "Done"
+	@echo "Done"
 
-filter: FilterMain.cpp Filter.cpp cs1300bmp.cc
+filter: FilterMain.cpp Filter.cpp cs1300bmp.cc cs1300bmp.h Filter.h rdtsc.h
 	$(CXX) $(CXXFLAGS) -o filter FilterMain.cpp Filter.cpp cs1300bmp.cc
+
 ##
 ## Parameters for the test run
 ##
@@ -23,7 +25,10 @@ judge: filter
 	-./Judge -p ./filter -i boats.bmp
 	-./Judge -p ./filter -i blocks-small.bmp
 
+test:
+	@find filtered*bmp | xargs -I @@ bash -c 'cmp --silent @@ tests/@@ && echo @@ looks correct. || echo INCORRECT: @@ does not match the reference image tests/@@.'
+
 clean:
-	-rm *.o
-	-rm filter
-	-rm filtered-*.bmp
+	-rm -f *.o
+	-rm -f filter
+	-rm -f filtered-*.bmp

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#include "rtdsc.h"
+#include "rdtsc.h"
 
 //
 // Forward declare the functions
@@ -84,6 +84,9 @@ readFilter(string filename)
       }
     }
     return filter;
+  } else {
+    cerr << "Bad input in readFilter:" << filename << endl;
+    exit(-1);
   }
 }
 
@@ -99,32 +102,32 @@ applyFilter(struct Filter *filter, cs1300bmp *input, cs1300bmp *output)
   output -> width = input -> width;
   output -> height = input -> height;
 
+  int filsize= filter->getSize();
+  int *pix;
+  int divs= filter -> getDivisor();
+  int ih= (input -> height) - 1;
+  int iw = (input-> width) -1;
+  for(int plane= 0; plane<3; plane++) {
+    for(int row = 1; row < ih ; row = row + 1) {
+      for(int col = 1; col < iw; col = col + 1) {
 
-  for(int col = 1; col < (input -> width) - 1; col = col + 1) {
-    for(int row = 1; row < (input -> height) - 1 ; row = row + 1) {
-      for(int plane = 0; plane < 3; plane++) {
-
-  int t = 0;
-  int iterator= filter-> getSize();
-  output -> color[plane][row][col] = 0;
-	for (int j = 0; j < iterator; j++) {
-	  for (int i = 0; i < iterator; i++) {	
-	    output -> color[plane][row][col]
-	      = output -> color[plane][row][col]
-	      + (input -> color[plane][row + i - 1][col + j - 1] 
-		 * filter -> get(i, j) );
+	pix= &output -> color[plane][row][col];
+    *pix=0;
+	for (int i = 0; i < filsize; i++) {
+	  for (int j = 0; j < filsize; j++) {	
+	    
+	      *pix= *pix + (input -> color[plane][row + i - 1][col + j - 1] * filter -> get(i, j) );
 	  }
 	}
 	
-	output -> color[plane][row][col] = 	
-	  output -> color[plane][row][col] / filter -> getDivisor();
+	*pix /= divs;
 
-	if ( output -> color[plane][row][col]  < 0 ) {
-	  output -> color[plane][row][col] = 0;
+	if ( *pix < 0 ) {
+	  *pix = 0;
 	}
 
-	if ( output -> color[plane][row][col]  > 255 ) { 
-	  output -> color[plane][row][col] = 255;
+	if ( *pix  > 255 ) { 
+	  *pix = 255;
 	}
       }
     }
